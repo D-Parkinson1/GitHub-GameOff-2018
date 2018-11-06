@@ -22,9 +22,20 @@ class Preload extends Phaser.Scene {
         this.load.setPath('/assets/images/');
 
 
-        //this.load.image([ ]);
+        // this.load.image([        ]);
 
-        //this.load.spritesheet([ ]);
+
+        this.load.spritesheet([
+            {
+                key: 'coin',
+                url: 'Coin.png',
+                frameConfig: {
+                    frameWidth: 32,
+                    frameHeight: 32
+                }
+            }
+        ]);
+
 
         // Path for audio
         this.load.setPath('assets/sounds');
@@ -33,6 +44,17 @@ class Preload extends Phaser.Scene {
     }
 
     create () {
+        let coinConfig = {
+            key: 'coinSpin',
+            frames: this.anims.generateFrameNumbers('coin',
+                 { frames: [0,1,2,3,4,5,6,7,8]}
+            ),
+            frameRate: 10,
+            yoyo: true,
+            repeat: -1
+        }
+
+        this.anims.create(coinConfig);
         this.scene.start('menu');
     }
 
