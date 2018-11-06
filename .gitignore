@@ -1,2 +1,4 @@
 /node_modules/
-*.tsx
+**.tsx
+**.tmx
+**.piskel
