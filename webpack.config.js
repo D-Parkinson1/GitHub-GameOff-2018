@@ -2,16 +2,29 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 /* eslint-disable no-undef */
 
 module.exports = {
     entry: { main: './src/index.js' },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'main.js'
+        filename: '[name].bundle.js',
+        chunkFilename: '[id].bundle.js'
     },
     devServer: {
             contentBase: path.join(__dirname, 'src')
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendor',
+                    chunks: 'all',
+                }
+            }
+        }
     },
     module: {
         rules: [
@@ -32,6 +45,7 @@ module.exports = {
         ]
     },
     plugins: [
+        //new BundleAnalyzerPlugin(),
         new webpack.DefinePlugin({
             'typeof CANVAS_RENDERER': JSON.stringify(true),
             'typeof WEBGL_RENDERER': JSON.stringify(true)
@@ -41,7 +55,7 @@ module.exports = {
             filename: './index.html'
         }),
         new CopyWebpackPlugin(
-            [ { from: 'src/assets', to: 'assets' } ]
+            [ { from: 'src/assets/', to: 'assets/', ignore: ['*.piskel'] } ]
         )
     ]
 };
