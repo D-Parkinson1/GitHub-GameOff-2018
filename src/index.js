@@ -2,6 +2,7 @@ import 'phaser';
 
 import Preload from './preload';
 import Menu from './menu';
+import Play from './play';
 import Config from './config';
 
 window.onload = function () {
@@ -12,8 +13,14 @@ window.onload = function () {
         backgroundColor: '#87CEEB',
         pixelArt: true,
         parent: 'gameDiv',
-        scene: [ Preload, Menu ],
-        title: 'Project name here',
+        scene: [ Preload, Menu, Play ],
+        physics: {
+            default: 'matter',
+            matter: {
+                gravity: { y: 10 }
+            }
+        },
+        title: "Gameoff 2018",
     };
 
     const game = new Phaser.Game(config);
