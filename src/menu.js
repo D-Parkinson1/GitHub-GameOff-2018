@@ -2,7 +2,7 @@ class Menu extends Phaser.Scene {
     constructor () {
         super({
             key: 'menu',
-            //plugins: [ 'InputPlugin' ]
+            plugins: [ 'InputPlugin' ]
         });
     }
 
@@ -12,9 +12,11 @@ class Menu extends Phaser.Scene {
 
     create () {
         this.add.sprite(100, 100, 'coin').setScale(4).play('coinSpin');
+        this.add.bitmapText(100, 50, 'mainFont', 'TESTING FONT');
+        this.startScene('play');
     }
 
-    nextScene (key) {
+    startScene (key) {
         this.scene.start(key);
     }
 
