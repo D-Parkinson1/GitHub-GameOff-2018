@@ -21,9 +21,7 @@ class Preload extends Phaser.Scene {
         // Path for images and sprite sheets
         this.load.setPath('/assets/images/');
 
-
-        // this.load.image([        ]);
-
+        this.load.image('Terrain', 'Terrain.png');
 
         this.load.spritesheet([
             {
@@ -36,10 +34,14 @@ class Preload extends Phaser.Scene {
             }
         ]);
 
+        this.load.setPath('/assets/levels/json/');
+        this.load.tilemapTiledJSON('tutorial', 'Tutorial.json')
+        //Font Path
+        this.load.setPath('/assets/fonts/');
+        this.load.bitmapFont('mainFont', ['main_0.png', 'main_1.png'], 'main.fnt');
 
         // Path for audio
-        this.load.setPath('assets/sounds');
-
+        this.load.setPath('assets/sounds/');
         //this.load.audio();
     }
 
