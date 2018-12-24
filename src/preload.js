@@ -22,6 +22,7 @@ class Preload extends Phaser.Scene {
         this.load.setPath('/assets/images/');
 
         this.load.image('Terrain', 'Terrain.png');
+        this.load.image('player', 'Player.png');
 
         this.load.spritesheet([
             {
