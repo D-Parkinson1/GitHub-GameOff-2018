@@ -8,10 +8,24 @@
         body, html {
             padding: 0px;
             margin: 0px;
+            /* PIXELART PROPERTIES
+            from: https://slides.com/jesseharlin/set-phasers-to-javascript/fullscreen#/47 */
+            filter: none;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -webkit-crisp-edges;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            -ms-interpolation-mode: nearest-neighbor;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: -webkit-crisp-edges;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -o-crisp-edges;
+            image-rendering: pixelated;
         }
         #gameDiv {
             display: block;
             margin: 0;
+            padding: 0;
             position: absolute;
             top: 50%;
             left: 50%;
