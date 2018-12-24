@@ -5,15 +5,16 @@ import Menu from './menu';
 import Play from './play';
 import Config from './config';
 
-window.onload = function () {
+window.onload = function() {
     const config = {
         type: Phaser.AUTO,
         width: Config.DEFAULT_WIDTH,
         height: Config.DEFAULT_HEIGHT,
         backgroundColor: '#87CEEB',
         pixelArt: true,
+        anitalias: false,
         parent: 'gameDiv',
-        scene: [ Preload, Menu, Play ],
+        scene: [Preload, Menu, Play],
         physics: {
             default: 'matter',
             matter: {
@@ -27,16 +28,16 @@ window.onload = function () {
     resize();
     window.addEventListener('resize', resize, false);
 
-    function resize () {
+    function resize() {
         let canvas = document.querySelector(`#${game.config.parent} canvas`);
         let windowWidth = window.innerWidth;
         let windowHeight = window.innerHeight;
         let windowRatio = windowWidth / windowHeight;
         let gameRatio = game.config.width / game.config.height;
-        if(windowRatio < gameRatio) {
+        if (windowRatio < gameRatio) {
             canvas.style.width = `${windowWidth}px`;
             canvas.style.height = `${windowHeight / gameRatio}px`;
-        } else{
+        } else {
             canvas.style.width = `${windowHeight * gameRatio}px`;
             canvas.style.height = `${windowHeight}px`;
         }
