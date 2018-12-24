@@ -6,14 +6,17 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 /* eslint-disable no-undef */
 
 module.exports = {
-    entry: { main: './src/index.js' },
+    entry: {
+        main: './src/index.js'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].bundle.js',
         chunkFilename: '[id].bundle.js'
     },
     devServer: {
-            contentBase: path.join(__dirname, 'src')
+        contentBase: path.join(__dirname, 'src'),
+        disableHostCheck: true
     },
     optimization: {
         splitChunks: {
@@ -27,20 +30,21 @@ module.exports = {
         }
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: { loader: 'babel-loader' }
+                use: {
+                    loader: 'babel-loader'
+                }
             },
             {
                 test: /\.html$/,
-                use: [
-                    {
-                        loader: 'html-loader',
-                        options: { minimize: true }
+                use: [{
+                    loader: 'html-loader',
+                    options: {
+                        minimize: true
                     }
-                ]
+                }]
             }
         ]
     },
@@ -55,7 +59,11 @@ module.exports = {
             filename: './index.html'
         }),
         new CopyWebpackPlugin(
-            [ { from: 'src/assets/', to: 'assets/', ignore: ['*.piskel'] } ]
+            [{
+                from: 'src/assets/',
+                to: 'assets/',
+                ignore: ['*.piskel']
+            }]
         )
     ]
 };
