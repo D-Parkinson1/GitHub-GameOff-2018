@@ -14,8 +14,12 @@ module.exports = {
         filename: '[name].bundle.js',
         chunkFilename: '[id].bundle.js'
     },
+    externals: {
+        phaser: 'Phaser'
+    },
     devServer: {
         contentBase: path.join(__dirname, 'src'),
+        //Fix for bug to do with header errors
         disableHostCheck: true
     },
     optimization: {
