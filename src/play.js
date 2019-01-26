@@ -1,8 +1,6 @@
 import Config from './config';
 import Player from './Classes/Player';
 
-console.log(Player);
-
 class Play extends Phaser.Scene {
     constructor() {
         super({
@@ -40,8 +38,7 @@ class Play extends Phaser.Scene {
         }
 
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn");
-        this.player = this.matter.add.sprite(spawnPoint.x, spawnPoint.y, "player");
-        //new Player(this, 64, 128);
+        this.player = new Player(this, spawnPoint.x, spawnPoint.y);
 
         const camera = this.cameras.main;
 
@@ -52,8 +49,15 @@ class Play extends Phaser.Scene {
         this.matter.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     }
 
-    update() {
+    update(time, delta) {
+        this.player.stop();
 
+        if (this.cursors.left.isDown) {
+            this.player.moveLeft();
+        }
+        if (this.cursors.right.isDown) {
+            this.player.moveRight();
+        }
     }
 };
 
